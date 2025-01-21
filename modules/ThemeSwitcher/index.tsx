@@ -1,12 +1,12 @@
-import { useGlobalContext } from '@/contexts/GlobalContext';
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { TouchableOpacity } from 'react-native';
 import Sizes from '@/constants/Sizes';
 import { useThemeColors } from '@/hooks/useThemeColors';
+import { useThemeStore } from '@/hooks/zustand/useThemeStore';
 
 export default function ThemeSwitcher(){
+  const { theme, setTheme } = useThemeStore();
   const themeColors = useThemeColors();
-  const {theme, setTheme} = useGlobalContext();
 
   return (
     <TouchableOpacity

@@ -1,0 +1,90 @@
+import Sizes from '@/constants/Sizes';
+import { useThemeColors } from '@/hooks/useThemeColors';
+import { StyleSheet } from 'react-native';
+
+export function useStyles(){
+  const themeColors = useThemeColors();
+  const styles = StyleSheet.create({
+    root:{
+      flex:1,
+      backgroundColor:themeColors.background,
+    },
+    row:{
+      flexDirection:'row',
+      flexWrap:'wrap',
+    },
+    tag:{
+      paddingVertical:4,
+      paddingHorizontal:15,
+      borderRadius:15,
+      backgroundColor:themeColors.skeleton,
+      marginRight:3,
+      marginBottom:3,
+    },
+    tagText:{
+      color:'#333333',
+      fontSize:Sizes.fonts.medium
+    },
+    infoText:{
+      fontSize:Sizes.fonts.medium,
+      color:themeColors.foreground,
+      fontWeight:'bold'
+    },
+    subInfoWrap:{
+      marginTop:20,
+    },
+    shadowMore:{
+      position:'absolute',
+      top:0,
+      left:0,
+      width:'100%',
+      height:'100%',
+      backgroundColor:'rgba(0,0,0,.6)',
+      display:'flex',
+      justifyContent:'center',
+      alignItems:'center',
+      textAlign:'center',
+    },
+    shadowMoreText:{
+      color:'#FAFAFA',
+      fontSize:Sizes.fonts.medium
+    },
+    picture:{
+      borderRadius:5,
+      marginTop:5,
+      overflow:'hidden'
+    },
+    reviewText:{
+      fontSize:Sizes.fonts.medium,
+      color:themeColors.foreground,
+      marginTop:20,
+    },
+    title:{
+      fontSize:Sizes.fonts.large,
+      color:themeColors.foreground,
+    },
+    spacing:{
+      marginBottom:10
+    },
+    flexSide:{
+      marginTop:20
+    },
+    star:{
+      marginLeft:-1,
+      marginRight:5,
+      fontSize:Sizes.fonts.medium,
+      color:themeColors.star,
+    },
+    webView:{
+      width:'100%',
+      maxWidth:600,
+      height:300,
+      borderWidth:1,
+      borderStyle:'solid',
+      borderColor:'#eeeeee',
+      borderRadius:5,
+      overflow:'hidden'
+    }
+  });
+  return styles;
+}

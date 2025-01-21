@@ -1,30 +1,47 @@
-import { Image, StyleSheet, ScrollView, View, Text } from 'react-native';
+import { useEffect, useState } from 'react';
+import { LoadingItem } from './_loading';
+import callApi from '@/utils/callApi';
+import ApiPath from '@/constants/ApiPath';
+import HikingDetail from './_detail';
+import HikingLayout from './_layout';
+import HikingTags from './_tags';
+import { API_HikingListResponse } from '@/types/api/hikingTypes';
 
 export default function HikingScreen() {
+  const [isPending, setPending] = useState(true);
+  const [hiking, setHiking] = useState<API_HikingListResponse | null>(null);
+  const [apiUrl, setApiUrl] = useState(ApiPath.hiking);
+
+  const onChangeTag = (index:number, tag:string) => {
+    setApiUrl(ApiPath.hiking + (index > 0 ? `?tags=${tag}` : ''));
+  }
+
+  useEffect(() => {
+    callApi(
+      apiUrl,
+      undefined,
+      {
+        onStart:() => setPending(true),
+        onSuccess:(res:API_HikingListResponse) => setHiking(res),
+        onFinally:() => setPending(false)
+      }
+    );
+  },[apiUrl]);
+
   return (
-    <ScrollView style={{flex:1}}>
-      <View style={styles.titleContainer}>
-        <Text>Hiking</Text>
-      </View>
-    </ScrollView>
+    <HikingLayout>
+      <HikingTags onChangeTag={onChangeTag}/>
+      {
+        isPending ? (
+          <LoadingItem />
+        ) : (
+          <HikingDetail
+            apiUrl={apiUrl}
+            records={hiking?.records || null} 
+            isMorePage={hiking?.pagination?.isMorePage || false} 
+          />
+        )
+      }
+    </HikingLayout>
   );
 }
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});

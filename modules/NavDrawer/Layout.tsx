@@ -35,7 +35,6 @@ function useStyles(){
     root:{
       flex:1,
       paddingTop: insets.top,
-      paddingBottom: insets.bottom
     },
     header: {
       flexDirection:'row',

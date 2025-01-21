@@ -14,7 +14,7 @@ export const Colors = {
     icon:'#aaaaaa',
     breadcrumb:'#eeeeee',
     breadcrumbText:'#555555',
-    skeleton:'#eeeeee',
+    skeleton:'#dddddd',
     journeySection:'#f1f1f1',
     drawerLink:'#cccccc',
     tagText:'#33333',
@@ -24,7 +24,8 @@ export const Colors = {
     menuTagActive:'#111111',
     button:'#00a86b',
     buttonBlur:'#66d89b',
-    errorText:'#ff0000'
+    errorText:'#ff0000',
+    star:'#f0b343',
   },
   dark: {
     background:'#292929',

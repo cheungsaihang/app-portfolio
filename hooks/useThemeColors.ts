@@ -1,9 +1,9 @@
 import { Colors } from '@/constants/Colors';
-import { useGlobalContext } from '@/contexts/GlobalContext';
+import { useThemeStore } from './zustand/useThemeStore';
 
 export function useThemeColors() {
-  const GlobalContext = useGlobalContext();
-  const theme = GlobalContext.theme;
+  const theme = useThemeStore(state => state.theme);
+
   if(theme == 'dark'){
     return {...Colors.default, ...Colors.dark};
   }
