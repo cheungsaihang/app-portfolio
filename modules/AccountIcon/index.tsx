@@ -1,51 +1,67 @@
-import { MouseEventHandler } from 'react';
-import { usePathname, useRouter } from "next/navigation";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { css, styled } from "@pigment-css/react";
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { useRouter } from 'expo-router';
+import Ionicons from '@expo/vector-icons/Ionicons'
+import Sizes from '@/constants/Sizes';
+import { useThemeColors } from '@/hooks/useThemeColors';
 
-const cssAccountIcon = css(({theme}) => ({
-  fontSize:`${theme.sizes.fonts.icon} !important`,
-  color: theme.colors.icon,
-}));
-
-const AvatarCircle = styled('div')({
-  display:'flex',
-  justifyContent:'center',
-  alignItems:'center',
-  backgroundColor:'#ff6666',
-  width:25,
-  height:25,
-  borderRadius:25,
-  color:'#ffffff', 
-  fontSize:'1.5rem'
-})
-
-export default function AccountIcon({email,onClick}:{email?:string,onClick?:() => void}){
+export default function AccountIcon({email}:{email?:string}){
   const router = useRouter();
-  const pathname = usePathname();
-  const onLinkClick:MouseEventHandler<HTMLAnchorElement> = (e) => {
-    e.preventDefault();
-    if(pathname != e.currentTarget.href){
-      router.push(e.currentTarget.href);
+  const styles = useStyles();
+  const onLinkClick = (link:'login' | 'profile') => {
+    if(link == 'profile'){
+      router.push({pathname:'/(stacks)/profile'});
     }
-    if(typeof onClick === 'function'){
-      onClick();
+    else{
+      router.push({pathname:'/(stacks)/login'});
     }
   }
+
   return ( 
     <>
       {
         email ? (
-          <a href={'/profile'} onClick={onLinkClick} ><Avatar email={email}/></a>
+          <Avatar email={email} onPress={() => onLinkClick('profile')} />
         ) : (
-          <a href={'/login'} onClick={onLinkClick} ><AccountCircleIcon className={cssAccountIcon}  /></a>
+          <TouchableOpacity onPress={() => onLinkClick('login')} ><Ionicons name="person-circle" style={styles.login} /></TouchableOpacity>
         )
       }
     </>
   );
 }
 
-function Avatar({email}:{email:string}){
+function Avatar({email, onPress}:{email:string; onPress:() => void;}){
   const first = email.charAt(0);
-  return (<AvatarCircle>{first}</AvatarCircle>);
+  const styles = useStyles();
+  return (
+    <TouchableOpacity
+      style={styles.avatar}
+      onPress={onPress}
+    >
+      <Text style={styles.avatarName}>{first}</Text>
+    </TouchableOpacity>
+  );
+}
+
+function useStyles(){
+  const themeColors = useThemeColors();
+  const styles = StyleSheet.create({
+    login:{
+      fontSize:Sizes.icon,
+      color: themeColors.icon,
+    },
+    avatar:{
+      justifyContent:'center',
+      alignItems:'center',
+      backgroundColor:'#ff6666',
+      width:(Sizes.icon -4),
+      height:(Sizes.icon -4),
+      borderRadius:(Sizes.icon -4),
+    },
+    avatarName:{
+      fontSize:Sizes.fonts.medium,
+      color:'#ffffff', 
+      fontWeight:'bold'
+    }
+  });
+  return styles;
 }

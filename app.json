@@ -4,7 +4,7 @@
     "slug": "app-portfolio",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/logo.gif",
+    "icon": "./assets/images/icon.jpg",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -14,7 +14,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/icon.jpg",
         "backgroundColor": "#ffffff"
       },
       "package": "com.hangcheung.appportfolio"
@@ -29,10 +29,10 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/logo.gif",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#232323"
+          "backgroundColor": "#ffffff"
         }
       ]
     ],

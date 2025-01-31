@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import { useFonts } from 'expo-font';
 import { Stack, useRouter } from 'expo-router';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import useAppInit from './useAppInit';
 import { useThemeColors } from '@/hooks/useThemeColors';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import Sizes from '@/constants/Sizes';
 import 'react-native-reanimated';
 
@@ -13,44 +13,33 @@ import 'react-native-reanimated';
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  const [appInited] = useAppInit(); 
   const styles = useStyles();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/NotoSansHK-VariableFont_wght.ttf'),
-  });
 
   useEffect(() => {
-    if (loaded) {
+    if (appInited) {
       SplashScreen.hideAsync();
     }
-  }, [loaded]);
+  }, [appInited]);
 
-  if (!loaded) {
+  if (!appInited) {
     return null;
   }
   return (
     <>
-      <Stack>
-        <Stack.Screen name="(drawers)/index" options={{ 
-          headerShown:false,
-        }} />
-        <Stack.Screen name="(stacks)/restaurantId/index" options={{
-          headerTitle:'',
-          headerStyle: styles.header,
-          headerLeft: () => <BackArrowButton />
-        }} />
-        <Stack.Screen name="(stacks)/hikingId/index" options={{
-          headerTitle:'',
-          headerStyle: styles.header,
-          headerLeft: () => <BackArrowButton />
-        }} />
-        <Stack.Screen name="(stacks)/login/index" options={{
-          headerTitle:'',
-          headerStyle: styles.header,
-          headerLeft: () => <BackArrowButton />
-        }} />
+      <Stack screenOptions={{
+        headerStyle:styles.header,
+        headerTitle:'',
+        headerLeft: () => <BackArrowButton />
+      }}>
+        <Stack.Screen name="(drawers)/index" options={{headerShown:false}}/>
+        <Stack.Screen name="(stacks)/restaurantId/index" />
+        <Stack.Screen name="(stacks)/hikingId/index" />
+        <Stack.Screen name="(stacks)/login/index" />
+        <Stack.Screen name="(stacks)/profile" />
         <Stack.Screen name="+not-found" />
       </Stack>
-      <StatusBar style="auto" />
+      <StatusBar style='light'  />
     </>
   );
 }
