@@ -1,8 +1,8 @@
-import { View } from 'react-native';
+import { View, ViewStyle } from 'react-native';
 import { SkeletionView, SkeletonAnimation } from '@/modules/Skeleton';
 import CardView from '@/modules/CardView';
 import DuplicateComponent from '@/modules/DuplicateComponent';
-import { useStyles } from './hooks';
+import useStyles from './useStyles';
 
 export function LoadingTags(){
   const styles = useStyles();
@@ -15,10 +15,14 @@ export function LoadingTags(){
   )
 }
 
-export function LoadingItem(){
+export function LoadingItem({
+  style
+}:{
+  style?:ViewStyle
+}){
   const styles = useStyles();
   return ( 
-    <SkeletonAnimation style={styles.row}>
+    <SkeletonAnimation style={{...styles.row,...style}}>
       <DuplicateComponent times={2}>
         <View style={styles.gird}>
           <CardView>

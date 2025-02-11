@@ -1,12 +1,12 @@
 "use client"
-import { Fragment, useRef } from "react";
+import { useRef } from "react";
 import { ScrollView, Text, View, Image, TouchableOpacity } from "react-native";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import WebView from "react-native-webview";
 import DuplicateComponent from "@/modules/DuplicateComponent";
 import PopupWrapper, { usePopupWrapper } from "@/modules/PopupWrapper";
 import Gallery from "@/modules/Gallery";
-import { useStyles } from "./hooks";
+import useStyles from "./useStyles";
 import { API_HikingDetail } from "@/types/api/hikingTypes";
 import ContainerView from "@/modules/ContainerView";
 
@@ -24,7 +24,7 @@ export default function Detail({detail}:{detail:API_HikingDetail}){
   }
 
   return (
-    <Fragment>
+    <>
       <ScrollView style={styles.root}>
         <ContainerView>
           <Text style={styles.title}>{detail.name}</Text>
@@ -98,6 +98,6 @@ export default function Detail({detail}:{detail:API_HikingDetail}){
       <PopupWrapper control={wrapperControl}>
         <Gallery index={zoomPic.current} pics={detail.pics} />
       </PopupWrapper>
-    </Fragment>
+    </>
   )
 }

@@ -3,7 +3,7 @@ import CardView from '@/modules/CardView';
 import { LoadingItem } from './_loading';
 import ThemedText from '@/modules/ThemedText';
 import callApi from '@/utils/callApi';
-import { useStyles } from './hooks';
+import useStyles from './useStyles';
 import usePagination from '@/hooks/usePagination';
 import { API_HikingList, API_HikingListResponse } from '@/types/api/hikingTypes';
 import NoDataListing from '@/modules/NoDataComponent';

@@ -33,7 +33,7 @@ export default function HikingScreen() {
       <HikingTags onChangeTag={onChangeTag}/>
       {
         isPending ? (
-          <LoadingItem />
+          <LoadingItem style={{marginHorizontal:-5}} />
         ) : (
           <HikingDetail
             apiUrl={apiUrl}
