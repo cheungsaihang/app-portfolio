@@ -1,10 +1,8 @@
-"use client"
-import { Fragment } from "react";
-import { ScrollView, Text, View, Image, TouchableOpacity } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import WebView from "react-native-webview";
 import DuplicateComponent from "@/modules/DuplicateComponent";
-import { useStyles } from "./hooks";
+import useStyles from "./useStyles";
 import ContainerView from "@/modules/ContainerView";
 import { API_RestaurantDetail } from "@/types/api/restaurantTypes";
 import AutoHeightImage from "@/modules/AutoHeightImage";
@@ -32,14 +30,14 @@ export default function Detail({detail}:{detail:API_RestaurantDetail}){
         <View style={styles.flexSide}>
           {
             detail.rate && (
-              <Fragment>
+              <>
                 <Text style={styles.infoText}>評分</Text>
                 <View style={styles.row}>
                   <DuplicateComponent times={detail.rate}>
                     <Ionicons name="star" size={18} color="#FFD700" style={styles.star} />
                   </DuplicateComponent>
                 </View>
-              </Fragment>
+              </>
             )
           }
           {

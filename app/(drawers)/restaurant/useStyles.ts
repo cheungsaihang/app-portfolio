@@ -2,20 +2,20 @@ import { StyleSheet } from 'react-native';
 import { useThemeColors } from '@/hooks/useThemeColors';
 import Sizes from '@/constants/Sizes';
 
-export function useStyles(){
+export default function useStyles(){
   const themeColors = useThemeColors();
   const styles = StyleSheet.create({
     root:{
       flex:1,
-      paddingHorizontal:(Sizes.spacing.horizontal - 5),
+      marginHorizontal:(Sizes.spacing.horizontal * -1),
+      paddingHorizontal:5,
     },
     row:{
       flexDirection:'row',
     },
     tagSkeletion:{
       flexDirection:'row',
-      paddingVertical:10,
-      paddingHorizontal:Sizes.spacing.horizontal,
+      marginBottom:10,
     },
     tag:{
       paddingVertical:4,

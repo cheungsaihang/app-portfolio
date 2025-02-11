@@ -33,7 +33,7 @@ export default function RestaurantScreen() {
       <RestaurantTags onChangeTag={onChangeTag}/>
       {
         isPending ? (
-          <LoadingItem />
+          <LoadingItem style={{marginHorizontal:-5}}/>
         ) : (
           <RestaurantDetail
             apiUrl={apiUrl}

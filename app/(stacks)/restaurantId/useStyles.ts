@@ -2,7 +2,7 @@ import Sizes from '@/constants/Sizes';
 import { useThemeColors } from '@/hooks/useThemeColors';
 import { StyleSheet } from 'react-native';
 
-export function useStyles(){
+export default function useStyles(){
   const themeColors = useThemeColors();
   const styles = StyleSheet.create({
     root:{
