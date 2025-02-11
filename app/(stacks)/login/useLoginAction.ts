@@ -34,7 +34,6 @@ export default function useLoginAction(){
       setState(ErrorState(validation.error.flatten().fieldErrors));
       return; 
     }
-    console.log("start");
     //Call Login Api
     callApi(
       ApiPath.auth.login,{

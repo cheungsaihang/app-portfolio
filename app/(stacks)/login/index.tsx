@@ -1,37 +1,19 @@
 import { useEffect, useRef } from "react";
-import { Text, View, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
+import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
 import { useThemeColors } from "@/hooks/useThemeColors";
 import { useAuthStore } from "@/hooks/zustand/useAuthStore";
 import  useLoginAction from "./useLoginAction";
 import CustomTextInput, { CustomTextInputRef } from "@/modules/CustomTextInput";
 import Sizes from "@/constants/Sizes";
-import useKeyboard from "@/hooks/useKeyboard";
 
 export default function LoginScreen(){
   const auth = useAuthStore();
   const router = useRouter();
-  const scrollRef = useRef<ScrollView>(null);
   const emailRef = useRef<CustomTextInputRef>(null);
   const passwordRef = useRef<CustomTextInputRef>(null);
   const styles = useStyles();
   const [state, loginAction]  = useLoginAction();
-  const { keyboardHeight } = useKeyboard({
-    listeners:{
-      onKeyBoardShow:() => {
-        scrollRef.current?.scrollTo({
-          y: 99,
-          animated:true
-        });
-      },
-      onKeyBoardHide:() => {
-        scrollRef.current?.scrollTo({
-          y: 0,
-          animated:true
-        });
-      }
-    }
-  });
 
   const submit = () => {
     if(emailRef.current && passwordRef.current){
@@ -49,16 +31,12 @@ export default function LoginScreen(){
   },[auth])
 
   return (
-    <ScrollView
-      ref={scrollRef}
-      style={styles.root}
-      contentContainerStyle={[styles.container,{paddingBottom:keyboardHeight}]}
-    >
+    <View style={styles.root}>
       <View style={styles.frame}>
         <View style={styles.form}>
             <View style={styles.field}>
               <Text style={styles.label}>電郵</Text>
-              <View style={styles.inputWrap}><CustomTextInput inputRef={emailRef} style={styles.input} autoCapitalize='none' /></View>
+              <View style={styles.inputWrap}><CustomTextInput inputRef={emailRef} style={styles.input} autoCapitalize='none' keyboardType='email-address' /></View>
               <View style={styles.errorWrap}>
                 {
                   state?.error?.email && (
@@ -101,7 +79,7 @@ export default function LoginScreen(){
             </View>
         </View>
       </View>
-    </ScrollView>
+    </View>
   )
 }
 
@@ -111,8 +89,6 @@ export function useStyles(){
     root:{
       flex:1,
       backgroundColor:themeColors.background,
-    },
-    container:{
       alignItems:'center',
     },
     frame:{

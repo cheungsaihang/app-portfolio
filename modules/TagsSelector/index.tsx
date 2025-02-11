@@ -52,8 +52,7 @@ function useStyles(){
   const styles = StyleSheet.create({
     wrap:{
       flexGrow:0,
-      paddingHorizontal:Sizes.spacing.horizontal,
-      paddingVertical:10,
+      marginBottom:10,
     },
     tag:{
       backgroundColor:themeColors.menuTag,

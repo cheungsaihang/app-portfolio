@@ -84,7 +84,7 @@ function useStyles(){
       flexDirection:'row',
       justifyContent:'space-between',
       alignItems:'center',
-      height: 50,
+      height: Sizes.height.header,
       backgroundColor: themeColors.menuBackground,
       borderWidth:1,
       borderStyle:'solid',

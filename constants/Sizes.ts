@@ -9,6 +9,9 @@ const Sizes = {
   spacing:{
     horizontal:10,
     vertical:20,
+  },
+  height:{
+    header:50
   }
 }
 export default Sizes;

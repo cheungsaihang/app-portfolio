@@ -1,5 +1,5 @@
 import { useThemeColors } from '@/hooks/useThemeColors';
-import React, { useEffect, ReactNode } from 'react';
+import { useEffect, ReactNode } from 'react';
 import {Animated, useAnimatedValue, ViewStyle, View} from 'react-native';
 
 export function SkeletonAnimation({style, children}:{style?:ViewStyle,children:ReactNode}){
