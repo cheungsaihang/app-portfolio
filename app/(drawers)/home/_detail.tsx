@@ -2,7 +2,7 @@ import { StyleSheet, View, Text, ImageBackground } from 'react-native';
 import { Article_Home } from '@/types/api/homeTypes';
 import Sizes from '@/constants/Sizes';
 import { useThemeColors } from '@/hooks/useThemeColors';
-import  ThemedText from '@/modules/ThemedText';
+import ThemedText from '@/modules/ThemedText';
 
 export default function HomeDetail({article}:{article:Article_Home}) {
   const styles = useStyles();

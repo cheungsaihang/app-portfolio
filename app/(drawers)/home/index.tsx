@@ -20,17 +20,6 @@ export default function HomeScreen() {
         onFinally: () => setPending(false)
       }
     );
-    // callApi(ApiPath.home).then((res:Response) => {
-    //   if(!isErrorResponse(res)){
-    //     setArticle(res.result);
-    //   }
-    //   else{
-    //     console.log(res.error);
-    //   }
-    //   setPending(false);
-    // }).catch((err) => {
-    //   console.log(err);
-    // });
   },[]);
 
   return (

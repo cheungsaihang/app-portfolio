@@ -4,17 +4,17 @@ import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import useAppInit from './useAppInit';
 import { useThemeColors } from '@/hooks/useThemeColors';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Sizes from '@/constants/Sizes';
 import 'react-native-reanimated';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [appInited] = useAppInit(); 
-  const styles = useStyles();
 
   useEffect(() => {
     if (appInited) {
@@ -28,9 +28,8 @@ export default function RootLayout() {
   return (
     <>
       <Stack screenOptions={{
-        headerStyle:styles.header,
-        headerTitle:'',
-        headerLeft: () => <BackArrowButton />
+        header:() => <StackHeader />,
+        animation:'ios_from_right'
       }}>
         <Stack.Screen name="(drawers)/index" options={{headerShown:false}}/>
         <Stack.Screen name="(stacks)/restaurantId/index" />
@@ -44,25 +43,31 @@ export default function RootLayout() {
   );
 }
 
-function BackArrowButton(){
+function StackHeader(){
   const router = useRouter();
   const styles = useStyles();
   return (
-    <TouchableOpacity 
-      onPress={() => router.back() }
-    >
-      <Ionicons name='chevron-back' size={Sizes.icon} style={styles.icon} />
-    </TouchableOpacity>
+    <View style={styles.header}>
+       <TouchableOpacity 
+          onPress={() => router.back() }
+        >
+          <Ionicons name='chevron-back' size={Sizes.icon} style={styles.icon} />
+        </TouchableOpacity>
+    </View>
   )
 }
-
 function useStyles(){
   const themeColors = useThemeColors();
+  const insets = useSafeAreaInsets();
   const styles = StyleSheet.create({
     header:{
+      paddingTop:insets.top,
       backgroundColor:themeColors.menuBackground,
-      paddingLeft:0,
-      paddingStart:0
+      height:(insets.top + Sizes.height.header),
+      flexDirection:'row',
+      justifyContent:'space-between',
+      alignItems:'center',
+      paddingHorizontal:Sizes.spacing.horizontal,
     },
     icon:{
       color:themeColors.icon,
