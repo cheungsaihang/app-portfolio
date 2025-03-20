@@ -10,14 +10,18 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.hangcheung.app-portfolio"
+      "bundleIdentifier": "com.hangcheung.app-portfolio",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera for screen classification"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/icon.jpg",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.hangcheung.appportfolio"
+      "package": "com.hangcheung.appportfolio",
+      "permissions": ["android.permission.CAMERA"]
     },
     "web": {
       "bundler": "metro",
@@ -34,7 +38,8 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      "./withCustomBuildScriptDependencies"
     ],
     "experiments": {
       "typedRoutes": true
