@@ -18,7 +18,7 @@ const routes = [
     name: 'restaurant',
     title: '餐廳',
     component: RestaurantScreen,
-  },
+  }
 ];
 export default function Layout() {
   return (
