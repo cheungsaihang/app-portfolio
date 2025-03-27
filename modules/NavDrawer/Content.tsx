@@ -17,6 +17,12 @@ export default function DrawerContent(props:DrawerContentComponentProps) {
         >
           <Text style={styles.toolsButtonText}>智慧相機</Text>
         </TouchableOpacity>
+        <TouchableOpacity 
+          style={styles.toolsButton}
+          onPress={() => router.push({pathname:'/(stacks)/textClassify'})}
+        >
+          <Text style={styles.toolsButtonText}>文字分析</Text>
+        </TouchableOpacity>
       </View>
     </DrawerContentScrollView>
   );
