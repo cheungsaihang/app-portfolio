@@ -36,6 +36,8 @@ export default function RootLayout() {
         <Stack.Screen name="(stacks)/hikingId/index" />
         <Stack.Screen name="(stacks)/login/index" />
         <Stack.Screen name="(stacks)/profile" />
+        <Stack.Screen name="(stacks)/camera" />
+        <Stack.Screen name="(stacks)/textClassify" />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style='light'  />

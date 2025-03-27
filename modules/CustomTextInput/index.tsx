@@ -3,6 +3,7 @@ import { TextInput, TextInputProps } from "react-native";
 
 export type CustomTextInputRef = {
   isFocused: () => boolean | undefined;
+  setValue: (text:string) => void;
   getValue: () => string;
 } | null;
 
@@ -23,6 +24,7 @@ export default function CustomTextInput({
   useImperativeHandle(inputRef, () => {
     return {
       isFocused: () => ref.current?.isFocused(),
+      setValue: (text:string) => setText(text),
       getValue: () => text,
     };
   }, [text]);
@@ -30,7 +32,8 @@ export default function CustomTextInput({
   return (
     <TextInput
       ref={ref}
-      style={style} 
+      style={style}
+      value={text} 
       onChangeText={(text) => setText(text)}
       secureTextEntry={secureTextEntry}
       autoCapitalize={autoCapitalize}
